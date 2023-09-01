@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/2023/08/30/Clean-Code/example-remove-if-1.png">
 <meta property="og:image" content="http://example.com/2023/08/30/Clean-Code/not-nested-if.png">
 <meta property="article:published_time" content="2023-08-30T06:31:16.000Z">
-<meta property="article:modified_time" content="2023-09-01T03:24:23.506Z">
+<meta property="article:modified_time" content="2023-09-01T04:00:15.972Z">
 <meta property="article:author" content="Zeng Xin">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2023/08/30/Clean-Code/1693377274242.jpg">
@@ -336,7 +336,7 @@
                 <!-- 文章字数统计 -->
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.2k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.6k</span>Reading time: <span class="post-count reading-time">8 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -507,10 +507,20 @@
 </li>
 <li><p>简单暴力   <strong>KISS (Keep it simple, stupid)</strong></p>
 <ul>
-<li>[IMO]Clarity First，Optimization second. 能让人看懂是最优先， 性能再好都是其次</li>
-<li>任何人都能写出workable的代码，好程序员写出来的是人类能懂的 “Any fool can write code that a computer can understand. Good programmers write code that humans can understand.” — Martin Fowler**</li>
-<li>著名的雷神之锤代码 Q_rsqrt <a target="_blank" rel="noopener" href="https://github.com/id-Software/Quake-III-Arena/blob/master/code/game/q_math.c">https://github.com/id-Software/Quake-III-Arena/blob/master/code/game/q_math.c</a><img src="/2023/08/30/Clean-Code/1693377274242.jpg" class="" title="code1"></li>
-<li>one of our recent candidate’s code</li>
+<li><p>[IMO]Clarity First，Optimization second. 能让人看懂是最优先， 性能再好都是其次。</p>
+</li>
+<li><p>[IMO] 尽量别用显式的去用Java的多线程，很难不出错。很难debug</p>
+<ul>
+<li>为啥要用， 异步 &amp; 性能（利用多核）- 用框架去解决。netty akka erlang exilir</li>
+<li>如果你一定要用， 1.把你写的并行代码和其他代码隔离开，单独弄个module。 2 使用ExecutorService。<br>  ExecutorService abstracts away many of the complexities associated with the lower-level abstractions like raw Thread</li>
+</ul>
+</li>
+<li><p>任何人都能写出workable的代码，好程序员写出来的是人类能懂的 “Any fool can write code that a computer can understand. Good programmers write code that humans can understand.” — Martin Fowler**</p>
+</li>
+<li><p>著名的雷神之锤代码 Q_rsqrt <a target="_blank" rel="noopener" href="https://github.com/id-Software/Quake-III-Arena/blob/master/code/game/q_math.c">https://github.com/id-Software/Quake-III-Arena/blob/master/code/game/q_math.c</a></p>
+<img src="/2023/08/30/Clean-Code/1693377274242.jpg" class="" title="code1"></li>
+<li><p>one of our recent candidate’s code</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -578,6 +588,30 @@
 <img src="/2023/08/30/Clean-Code/example-remove-if-1.png" class="" title="code2">
 <img src="/2023/08/30/Clean-Code/not-nested-if.png" class="" title="code2">
 
+<h2 id="Be-proactive"><a href="#Be-proactive" class="headerlink" title="Be proactive"></a>Be proactive</h2><ul>
+<li>主动去学，既然像写文章。那肯定是多看好的 少看bad code。看多了你也开始这么写了。</li>
+<li>那去看什么？<ul>
+<li><p>大牛写的不适合你 他们的代码也很底层 你模仿不来</p>
+</li>
+<li><p>github上高星的项目都是大公司开源的可以通用的工具或平台 kafka spark flink。你写业务代码和这些优秀的强关注performance的项目 目标就不太一致</p>
+</li>
+<li><p>那看点儿啥？你的代码是搭载什么上边的 你和平台的风格靠拢。 你在别人的项目相关下工作， 和别人写的风格靠拢。别突出自己的不同。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-petclinic">https://github.com/spring-projects/spring-petclinic</a> spring 自己提供的一个他们觉得要这么写比较的好的 事例应用。宠物诊所</p>
+</li>
+<li><p>Spring Music（<a target="_blank" rel="noopener" href="https://github.com/cloudfoundry-samples/spring-music%EF%BC%89">https://github.com/cloudfoundry-samples/spring-music）</a> ：一个使用Spring Boot构建的音乐存储和检索示例应用程序。</p>
+</li>
+<li><p>Spring RESTbucks（<a target="_blank" rel="noopener" href="https://github.com/restbucks/restbucks-java-spring%EF%BC%89">https://github.com/restbucks/restbucks-java-spring）</a> ：一个使用Spring Boot构建的咖啡订购和配送系统示例。</p>
+</li>
+<li><p>Spring Trader（<a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-trade%EF%BC%89">https://github.com/spring-projects/spring-trade）</a> ：一个使用Spring Boot构建的股票交易示例程序，展示了金融交易相关的业务逻辑。</p>
+</li>
+<li><p>Spring PetClinic Microservices（<a target="_blank" rel="noopener" href="https://github.com/spring-petclinic/spring-petclinic-microservices%EF%BC%89">https://github.com/spring-petclinic/spring-petclinic-microservices）</a>： Spring PetClinic的微服务版本，它将业务功能划分为多个微服务。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="Extensive-Reading"><a href="#Extensive-Reading" class="headerlink" title="Extensive Reading"></a>Extensive Reading</h2><p><a target="_blank" rel="noopener" href="https://github.com/google/styleguide/tree/gh-pages">https://github.com/google/styleguide/tree/gh-pages</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/alibaba/Alibaba-Java-Coding-Guidelines#naming-conventions">https://github.com/alibaba/Alibaba-Java-Coding-Guidelines#naming-conventions</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/jnguyen095/clean-code/blob/master/Clean.Code.A.Handbook.of.Agile.Software.Craftsmanship.pdf">https://github.com/jnguyen095/clean-code/blob/master/Clean.Code.A.Handbook.of.Agile.Software.Craftsmanship.pdf</a></p>
@@ -736,7 +770,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Personal-Views-Basic-Principles"><span class="toc-number">1.</span> <span class="toc-text">Personal Views &#x2F; Basic Principles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Replace-Conditional-with-Polymorphis"><span class="toc-number">2.</span> <span class="toc-text">Replace Conditional with Polymorphis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Improve-Conditional-Expression"><span class="toc-number">3.</span> <span class="toc-text">Improve Conditional Expression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Extensive-Reading"><span class="toc-number">4.</span> <span class="toc-text">Extensive Reading</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Personal-Views-Basic-Principles"><span class="toc-number">1.</span> <span class="toc-text">Personal Views &#x2F; Basic Principles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Replace-Conditional-with-Polymorphis"><span class="toc-number">2.</span> <span class="toc-text">Replace Conditional with Polymorphis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Improve-Conditional-Expression"><span class="toc-number">3.</span> <span class="toc-text">Improve Conditional Expression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Be-proactive"><span class="toc-number">4.</span> <span class="toc-text">Be proactive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Extensive-Reading"><span class="toc-number">5.</span> <span class="toc-text">Extensive Reading</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
